@@ -29,8 +29,8 @@
        end-test-group.
            perform end-test-case
            if group-open
-               accept end-time from time
-               move group-start-time to start-time
+               accept time-end from time
+               move group-start-time to time-start
                perform compute-time-diff
                display "<COMPLETEDIN::>" time-diff-display
            end-if
@@ -46,8 +46,8 @@
 
        end-test-case.
            if test-case-open
-               accept end-time from time
-               move test-start-time to start-time
+               accept time-end from time
+               move test-start-time to time-start
                perform compute-time-diff
                display "<COMPLETEDIN::>" time-diff-display
            end-if
@@ -56,12 +56,19 @@
 
        compute-time-diff.
            compute time-difference =
-               (hours of end-time - hours of start-time) * 3600000 +
-               (minutes of end-time - minutes of start-time) * 60000 +
-               (seconds of end-time - seconds of start-time) * 1000 +
-               (mseconds of end-time - mseconds of start-time) * 10
+               (hours of time-end - hours of time-start) * 3600000 +
+               (minutes of time-end - minutes of time-start) * 60000 +
+               (seconds of time-end - seconds of time-start) * 1000 +
+               (mseconds of time-end - mseconds of time-start) * 10
            if time-difference < -10000
                add 86400000 to time-difference
            end-if
            move time-difference to time-diff-display
+           .
+
+       set-random-seed.
+           if random-seed = 0
+               accept random-seed from time
+           end-if
+           compute tmp-numeric-value = function random(random-seed)
            .

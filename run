@@ -1,5 +1,6 @@
-python3 preprocessor.py -o tests-gen.cbl tests.cbl
-cobc -x -std=ibm-strict -O2 -o out tests-gen.cbl solution.cbl
+example=$1
+python3 src/preprocessor.py $example/tests.cbl
+cobc -x -std=ibm-strict -O2 -I src -I $example -o out $example/tests-out.cbl $example/solution.cbl
 if [ $? -eq 0 ]; then
   ./out
 fi
