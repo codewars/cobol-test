@@ -1,0 +1,4 @@
+cobc -x -std=ibm-strict -O2 -o out tests.cbl solution.cbl
+if [ $? -eq 0 ]; then
+  ./out
+fi
