@@ -1,4 +1,5 @@
-cobc -x -std=ibm-strict -O2 -o out tests.cbl solution.cbl
+python3 preprocessor.py -o tests-gen.cbl tests.cbl
+cobc -x -std=ibm-strict -O2 -o out tests-gen.cbl solution.cbl
 if [ $? -eq 0 ]; then
   ./out
 fi

@@ -1,3 +1,6 @@
+           perform end-test-group
+           goback.
+       
        end-tests.
            perform end-test-group
            goback.
