@@ -23,27 +23,39 @@ def insert_after(pattern, text, s):
 def format(s):
     return '\n'.join(' ' * 11 + line for line in s.split('\n'))
 
+TEST_GROUP = format(r'''move spaces to group-title
+string \1
+  into group-title
+perform begin-test-group''')
+
+TEST_CASE = format(r'''move spaces to test-case-title
+string \1
+  into test-case-title
+perform begin-test-case''')
+
 EXPECT = format(r'''if \1 = \2
   move spaces to assertion-message
   perform assert-true
 else
   string
-    'expected: ' \1
+    'expected: ' \2
     '<:LF:>' 
-    'actual: ' \2
+    'actual: ' \1
     into assertion-message
   perform assert-false
 end-if''')
 
 def preprocess(text):
     flags = re.I | re.MULTILINE
+    ident = r'''[zZnNxXgG]?'[^']+'|[zZnNxXgG]?"[^"]+"|[-a-zA-Z0-9_]+'''
     s = insert_after(r'^\s+working-storage\s+section\s*\.', text, 'copy tdata.')
     if not s:
         s = insert_after(r'^\s+data\s+division\s*\.', text, 'working-storage section. copy tdata.')
+        s = s or text
     s = re.sub(r'^\s+end\s+tests\s*\.', '       copy tproc.', s, flags=flags)
-    s = re.sub(r'^\s+testsuite\s*([^.]+)\.', format('string \\1\n  into group-title\nperform begin-test-group'), s, flags=flags)
-    s = re.sub(r'^\s+testcase\s*([^.]+)\.', format('string \\1\n  into test-case-title\nperform begin-test-case'), s, flags=flags)
-    s = re.sub(r'^\s+expect\s+(\S+)\s+to\s+be\s+([^\s.]+)', EXPECT, s, flags=flags)
+    s = re.sub(r'^\s+testsuite\s*([^.]+)\.', TEST_GROUP, s, flags=flags)
+    s = re.sub(r'^\s+testcase\s*([^.]+)\.', TEST_CASE, s, flags=flags)
+    s = re.sub(rf'^\s+expect\s+({ident})\s+to\s+be\s+({ident})', EXPECT, s, flags=flags)
 
     return s
 
