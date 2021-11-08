@@ -1,3 +1,4 @@
+       id division.
        program-id. factorial recursive.
 
        data division.
@@ -8,12 +9,11 @@
       * procedure division using n returning res.
       * is not implemented by GnuCOBOL 
        procedure division using n res.
-      *      display "n = " n " x =" x
            move 1 to res
            if n > 1
               subtract 1 from n
               call 'factorial' using by content n by reference res
               compute res = res * (n + 1)
            end-if
-           .
+           goback.
        end program factorial.

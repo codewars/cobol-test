@@ -1,3 +1,4 @@
+       id division.
        program-id. tests.
 
        data division.
@@ -18,6 +19,7 @@
            perform dotest
 
            testsuite 'Random Tests'.
+           perform set-random-seed.
            perform varying i from 1 by 1 until i > 3
                compute n = function random() * 20
                compute expected = function factorial(n)
