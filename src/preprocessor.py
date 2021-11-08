@@ -33,16 +33,15 @@ string \1
   into test-case-title
 perform begin-test-case''')
 
+# Don't call assert-true or assert-false because it is not straightforward
+# to create an assertion message for negative numbers
 EXPECT = format(r'''if \1 = \2
-  move spaces to assertion-message
-  perform assert-true
+  display '<PASSED::>Test Passed'
 else
-  string
+  display '<FAILED::>'
     'expected: ' \2
     '<:LF:>' 
     'actual: ' \1
-    into assertion-message
-  perform assert-false
 end-if''')
 
 def preprocess(text):
