@@ -4,13 +4,13 @@
        data division.
        working-storage section.
        copy preloaded.
-       01  chars       pic x(60) value 
+       01  chars       pic a(60) value 
            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.
        01  i           pic 9(2).
        01  j           pic 9(2).
        01  n           pic 9(2).
        01  len         pic 9(2).
-       01  arg         pic x(20).
+       01  arg         pic a(20).
        01  result      pic x(50).
        01  expected    pic x(50).
 
