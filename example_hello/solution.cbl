@@ -12,7 +12,7 @@
        procedure division using arg result.
            string hello delimited by size
                   arg delimited by low-value '!'
-                  low-value 
+                  x'00' 
              into result
            goback.
        end program hello.

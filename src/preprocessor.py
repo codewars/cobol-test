@@ -23,12 +23,12 @@ def insert_after(pattern, text, s):
 def format(s):
     return '\n'.join(' ' * 11 + line for line in s.split('\n'))
 
-TEST_GROUP = format(r'''move spaces to group-title
+TEST_GROUP = format(r'''initialize group-title
 string \1
   into group-title
 perform begin-test-group''')
 
-TEST_CASE = format(r'''move spaces to test-case-title
+TEST_CASE = format(r'''initialize test-case-title
 string \1
   into test-case-title
 perform begin-test-case''')

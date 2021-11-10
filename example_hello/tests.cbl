@@ -19,13 +19,13 @@
            testsuite 'Fixed Tests'.
            testcase 'Jane Doe'.
            move z'Jane Doe' to arg
-           move spaces to result
+           initialize result
            call 'hello' using arg result
            expect result to be z"Hello, Jane Doe!"
 
            testcase 'World'.
            move z'World' to arg
-           move spaces to result
+           initialize result
            display "Testing " arg
            call 'hello' using arg result
            expect result to be z'Hello, World!'
@@ -35,18 +35,18 @@
                "Failing Tests".
            testcase 'John Doe (arg is not null-terminated)'.
            move 'John Doe' to arg
-           move spaces to result
+           initialize result
            call 'hello' using arg result
            expect result to be z'Hello, John Doe!'
 
-           testcase 'John (result is not cleared before the call)'.
+           testcase 'John (result is initialized before the call)'.
            move z'John' to arg
            call 'hello' using arg result
            expect result to be z'Hello, John!'
 
            testcase 'Codewars (result is passed by content)'.
            move z'Codewars' to arg
-           move spaces to result
+           initialize result
            call 'hello' using by content arg result
            expect result to be z'Hello, Codewars!'
 
@@ -57,8 +57,8 @@
            perform varying n from 1 by 1 until n > 5
                perform random-string
                testcase 'Testing ' arg.
-               move spaces to result
-               move spaces to expected
+               initialize result
+               initialize expected
                call 'hello' using by content arg by reference result
                string hello delimited by size
                       arg delimited by low-value
