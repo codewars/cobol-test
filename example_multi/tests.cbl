@@ -5,6 +5,7 @@
        working-storage section.
        01  i           pic 9(8).
        01  n           pic 9(10).
+       01  n-disp      pic z(9)9.
        01  result      pic 9(10)v9(2).
        01  expected    pic 9(10)v9(2).
 
@@ -30,13 +31,15 @@
            end tests.
        
        dotest-div.
-           testcase "div2: n = " n.
+           move n to n-disp
+           testcase "div2: n = " function trim(n-disp).
            call 'div2' using by content n by reference result
            expect result to be expected
            .
 
        dotest-mul.
-           testcase "mul2: n = " n.
+           move n to n-disp
+           testcase "mul2: n = " function trim(n-disp).
            call 'mul2' using by content n by reference result
            expect result to be expected
            .
