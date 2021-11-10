@@ -15,7 +15,7 @@ python3 src/preprocessor.py example_hello/tests.cbl
 This command creates `example_hello/tests-out.cbl`.
 
 ```
-cobc -x -std=ibm-strict -O2 -fstatic-call -I src -I example_hello -o out example_hello/tests-out.cbl example_hello/solution.cbl
+cobc -x -std=ibm -O2 -fstatic-call -I src -I example_hello -o out example_hello/tests-out.cbl example_hello/solution.cbl
 ```
 
 This command compiles the source code and creates the executable `out`. The `-I` option specifies the path to copybooks. `-fstatic-call` makes all function calls static.
