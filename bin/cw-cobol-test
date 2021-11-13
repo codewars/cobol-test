@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -eu
+
+COBOL_TEST=$(cd $(dirname $0)/../; pwd)
+
+# Preprocess
+python3 $COBOL_TEST/src/preprocessor.py ./tests.cbl
+
+# Compile and Run
+cobc \
+  -x \
+  -j \
+  -std=ibm \
+  -O2 \
+  -fstatic-call \
+  -ffold-copy=lower \
+  -I $COBOL_TEST/src \
+  -I . \
+  ./tests-out.cbl \
+  ./solution.cbl
