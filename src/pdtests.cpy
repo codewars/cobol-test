@@ -9,20 +9,20 @@
            if assertion-message = spaces
                move "Test Passed" to assertion-message
            end-if
-           display "<PASSED::>" assertion-message
+           display line-feed-char "<PASSED::>" assertion-message
            .
 
        assert-false.
            if assertion-message = spaces
                move "Test Failed" to assertion-message
            end-if
-           display "<FAILED::>" assertion-message
+           display line-feed-char "<FAILED::>" assertion-message
            .
 
        begin-test-group.
            perform end-test-group
            accept group-start-time from time
-           display "<DESCRIBE::>" group-title
+           display line-feed-char "<DESCRIBE::>" group-title
            set group-open to true
            .
 
@@ -32,7 +32,7 @@
                accept time-end from time
                move group-start-time to time-start
                perform compute-time-diff
-               display "<COMPLETEDIN::>" 
+               display line-feed-char "<COMPLETEDIN::>" 
                        function trim(time-diff-display)
            end-if
            set group-closed to true
@@ -41,7 +41,7 @@
        begin-test-case.
            perform end-test-case
            accept test-start-time from time
-           display "<IT::>" test-case-title
+           display line-feed-char "<IT::>" test-case-title
            set test-case-open to true
            .
 
@@ -50,7 +50,7 @@
                accept time-end from time
                move test-start-time to time-start
                perform compute-time-diff
-               display "<COMPLETEDIN::>"
+               display line-feed-char "<COMPLETEDIN::>"
                        function trim(time-diff-display)
            end-if
            set test-case-closed to true

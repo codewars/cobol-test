@@ -36,9 +36,9 @@ perform begin-test-case''')
 # Don't call assert-true or assert-false because it is not straightforward
 # to create an assertion message for negative numbers
 EXPECT = format(r'''if \1 = \2
-  display '<PASSED::>Test Passed'
+  display line-feed-char '<PASSED::>Test Passed'
 else
-  display '<FAILED::>'
+  display line-feed-char '<FAILED::>'
     'expected: ' \2
     '<:LF:>' 
     'actual: ' \1

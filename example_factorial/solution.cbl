@@ -9,6 +9,7 @@
       * procedure division using n returning res.
       * is not implemented by GnuCOBOL 
        procedure division using n res.
+           display "n = " n "; " with no advancing
            move 1 to res
            if n > 1
               subtract 1 from n

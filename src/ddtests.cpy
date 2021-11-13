@@ -1,3 +1,5 @@
+       01  line-feed-char      pic x value x'0a'.
+       
        01  assertion-message   pic x(200).
 
        01  group-title         pic x(80).
