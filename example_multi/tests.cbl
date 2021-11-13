@@ -3,7 +3,6 @@
 
        data division.
        working-storage section.
-       01  i           pic 9(8).
        01  n           pic 9(10).
        01  n-disp      pic z(9)9.
        01  func-name   pic x(30).
@@ -21,7 +20,7 @@
 
            testsuite 'Random Tests'.
            perform set-random-seed.
-           perform varying i from 1 by 1 until i > 5
+           perform 5 times
                compute n = function random() * 20
                compute expected = n * 2
                perform dotest-mul
@@ -30,7 +29,7 @@
            end-perform
            
            testsuite 'Dynamic Calls'.
-           perform varying i from 1 by 1 until i > 3
+           perform 3 times
                compute n = function random() * 20
                if function random() > 0.5
                    move 'mul2' to func-name

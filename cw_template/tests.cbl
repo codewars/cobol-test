@@ -9,7 +9,6 @@
        01  arg2-str    pic -9(5).
        01  result      pic s9(6).
        01  expected    pic s9(6).
-       01  n           pic 9(3).
 
        procedure division.
       * Fixed Tests
@@ -25,7 +24,7 @@
       * Random Tests
            testsuite "Random Tests".
            perform set-random-seed
-           perform varying n from 1 by 1 until n > 5
+           perform 5 times
                compute arg1 = function random() * 199999 - 99999
                compute arg2 = function random() * 199999 - 99999
                move arg1 to arg1-str

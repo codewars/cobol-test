@@ -8,7 +8,6 @@
            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.
        01  i           pic 9(2).
        01  j           pic 9(2).
-       01  n           pic 9(2).
        01  len         pic 9(2).
        01  arg         pic a(20).
        01  result      pic x(50).
@@ -54,7 +53,7 @@
       * Random Tests
            testsuite "Random Tests".
            perform set-random-seed
-           perform varying n from 1 by 1 until n > 5
+           perform 5 times
                perform random-string
                testcase 'Testing ' arg.
                initialize result
