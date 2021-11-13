@@ -39,7 +39,7 @@
            call 'hello' using arg result
            expect result to be z'Hello, John Doe!'
 
-           testcase 'John (result is initialized before the call)'.
+           testcase 'John (result is not initialized before the call)'.
            move z'John' to arg
            call 'hello' using arg result
            expect result to be z'Hello, John!'
