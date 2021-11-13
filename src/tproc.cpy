@@ -32,7 +32,8 @@
                accept time-end from time
                move group-start-time to time-start
                perform compute-time-diff
-               display "<COMPLETEDIN::>" time-diff-display
+               display "<COMPLETEDIN::>" 
+                       function trim(time-diff-display)
            end-if
            set group-closed to true
            .
@@ -49,7 +50,8 @@
                accept time-end from time
                move test-start-time to time-start
                perform compute-time-diff
-               display "<COMPLETEDIN::>" time-diff-display
+               display "<COMPLETEDIN::>"
+                       function trim(time-diff-display)
            end-if
            set test-case-closed to true
            .
