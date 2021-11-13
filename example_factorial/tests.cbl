@@ -31,7 +31,7 @@
        dotest.
            testcase "n = " n.
            call 'factorial' using by content n by reference result
-           expect result to be expected
+           expect result to be expected.
            .
 
        end program tests.

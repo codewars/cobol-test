@@ -48,14 +48,14 @@
            move n to n-disp
            testcase "div2: n = " function trim(n-disp).
            call 'div2' using by content n by reference result
-           expect result to be expected
+           expect result to be expected.
            .
 
        dotest-mul.
            move n to n-disp
            testcase "mul2: n = " function trim(n-disp).
            call 'mul2' using by content n by reference result
-           expect result to be expected
+           expect result to be expected.
            .
 
        dotest-dynamic.
@@ -64,7 +64,7 @@
                     " (dynamic): n = " 
                     function trim(n-disp).
            call func-name using by content n by reference result
-           expect result to be expected
+           expect result to be expected.
            .
 
        end program tests.

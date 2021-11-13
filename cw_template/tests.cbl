@@ -20,7 +20,7 @@
            call 'solution' using 
                by content arg1 arg2 
                by reference result
-           expect result to be -2
+           expect result to be -2.0.
 
       * Random Tests
            testsuite "Random Tests".
@@ -35,7 +35,7 @@
                call 'solution' using 
                    by content arg1 arg2
                    by reference result
-               expect result to be expected
+               expect result to be expected.
            end-perform
 
            end tests.

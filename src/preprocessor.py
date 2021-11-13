@@ -35,7 +35,8 @@ perform begin-test-case''')
 
 # Don't call assert-true or assert-false because it is not straightforward
 # to create an assertion message for negative numbers
-EXPECT = format(r'''if \1 = \2
+EXPECT = format(r'''if \1 = 
+    \2
   display line-feed-char '<PASSED::>Test Passed'
 else
   display line-feed-char '<FAILED::>'
@@ -46,15 +47,19 @@ end-if''')
 
 def preprocess(text):
     flags = re.I | re.MULTILINE
-    ident = r'''[zZnNxXgG]?'[^']+'|[zZnNxXgG]?"[^"]+"|[-a-zA-Z0-9_]+'''
-    s = insert_after(r'^\s+working-storage\s+section\s*\.', text, 'copy ddtests.')
+    pat_string1 = r"[zZnNxXgG]?'[^']+'"
+    pat_string2 = r'[zZnNxXgG]?"[^"]+"'
+    pat_number = r'[+-]?\d+(?:\.\d*(?:[eE][+-]?\d+)?)?'
+    pat_other = r'[-a-zA-Z0-9_:()]+'
+    pat_value = f'(?:{pat_string1}|{pat_string2}|{pat_number}|{pat_other})'
+    s = insert_after(r'^\s*working-storage\s+section\s*\.', text, 'copy ddtests.')
     if not s:
-        s = insert_after(r'^\s+data\s+division\s*\.', text, 'working-storage section. copy ddtests.')
+        s = insert_after(r'^\s*data\s+division\s*\.', text, 'working-storage section. copy ddtests.')
         s = s or text
-    s = re.sub(r'^\s+end\s+tests\s*\.', '       copy pdtests.', s, flags=flags)
-    s = re.sub(r'^\s+testsuite\s*([^.]+)\.', TEST_GROUP, s, flags=flags)
-    s = re.sub(r'^\s+testcase\s*([^.]+)\.', TEST_CASE, s, flags=flags)
-    s = re.sub(rf'^\s+expect\s+({ident})\s+to\s+be\s+({ident})', EXPECT, s, flags=flags)
+    s = re.sub(r'^\s*end\s+tests\s*\.', '       copy pdtests.', s, flags=flags)
+    s = re.sub(rf'^\s*testsuite\s+((?:{pat_value}\s*)+)\.', TEST_GROUP, s, flags=flags)
+    s = re.sub(rf'^\s*testcase\s+((?:{pat_value}\s*)+)\.', TEST_CASE, s, flags=flags)
+    s = re.sub(rf'^\s*expect\s+((?:{pat_value}\s*)+?)to\s+be\s+((?:{pat_value}\s*)+)\.', EXPECT, s, flags=flags)
 
     return s
 

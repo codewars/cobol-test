@@ -21,14 +21,14 @@
            move z'Jane Doe' to arg
            initialize result
            call 'hello' using arg result
-           expect result to be z"Hello, Jane Doe!"
+           expect result to be z"Hello, Jane Doe!".
 
            testcase 'World'.
            move z'World' to arg
            initialize result
            display "Testing " arg
            call 'hello' using arg result
-           expect result to be z'Hello, World!'
+           expect result to be z'Hello, World!'.
            
       * Failing Tests     
            testsuite 
@@ -37,18 +37,18 @@
            move 'John Doe' to arg
            initialize result
            call 'hello' using arg result
-           expect result to be z'Hello, John Doe!'
+           expect result to be z'Hello, John Doe!'.
 
            testcase 'John (result is not initialized before the call)'.
            move z'John' to arg
            call 'hello' using arg result
-           expect result to be z'Hello, John!'
+           expect result to be z'Hello, John!'.
 
            testcase 'Codewars (result is passed by content)'.
            move z'Codewars' to arg
            initialize result
            call 'hello' using by content arg result
-           expect result to be z'Hello, Codewars!'
+           expect result to be z'Hello, Codewars!'.
 
 
       * Random Tests
@@ -64,7 +64,7 @@
                       arg delimited by low-value
                       z'!'
                    into expected
-               expect result to be expected
+               expect result to be expected.
            end-perform
 
            end tests.

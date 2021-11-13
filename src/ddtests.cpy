@@ -3,13 +3,13 @@
        
        01  assertion-message   pic x(200).
 
-       01  group-title         pic x(80).
+       01  group-title         pic x(100).
        01  group-start-time    pic 9(8).
        01  group-status        pic x value 'f'.
            88 group-open       value 't'.
            88 group-closed     value 'f'.
 
-       01  test-case-title     pic x(80).
+       01  test-case-title     pic x(100).
        01  test-start-time     pic 9(8).
        01  test-case-status    pic x value 'f'.
            88 test-case-open   value 't'.

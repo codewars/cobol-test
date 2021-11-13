@@ -45,7 +45,7 @@ Starts a group of tests. Examples:
 testsuite 'Group 1'.
 testsuite 'Group ' n.
 ```
-Note: the period at the end is mandatory. The period cannot appear in any literal (even inside quotes). The maximum group title length is 80 characters.
+Note: the period at the end is mandatory. This period does not affect the statement scope. The maximum group title length is 100 characters.
 
 #### `testcase (identifier | literal)+.`
 Starts a test case. Examples:
@@ -53,14 +53,17 @@ Starts a test case. Examples:
 testcase 'Test 1'.
 testcase 'Testing n = ' n.
 ```
-Note: the period at the end is mandatory. The period cannot appear in any literal (even inside quotes). The maximum test case title length is 80 characters.
+Note: the period at the end is mandatory. This period does not affect the statement scope. The maximum test case title length is 100 characters.
 
-#### `expect identifier to be (identifier | literal)`
+#### `expect (identifier | literal) to be (identifier | literal).`
 Compares the first indentifier with the second identifier (or literal) and reports a failure if they are different. Examples:
 ```
-expect result to be expected
-expect result to be 'Hello, World!'
+expect result to be expected.
+expect result to be '1. Hello, World!'.
+expect field1 of result to be field1 of expected.
+expect result(3) to be 1.0.
 ```
+Note: the period at the end is mandatory. This period does not affect the statement scope.
 
 #### `end tests.`
 This statement should be placed at the end of test code. It is possible to define subroutines after this statement. Note: the period at the end is mandatory.
