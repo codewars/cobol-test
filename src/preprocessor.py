@@ -47,11 +47,11 @@ end-if''')
 def preprocess(text):
     flags = re.I | re.MULTILINE
     ident = r'''[zZnNxXgG]?'[^']+'|[zZnNxXgG]?"[^"]+"|[-a-zA-Z0-9_]+'''
-    s = insert_after(r'^\s+working-storage\s+section\s*\.', text, 'copy tdata.')
+    s = insert_after(r'^\s+working-storage\s+section\s*\.', text, 'copy ddtests.')
     if not s:
-        s = insert_after(r'^\s+data\s+division\s*\.', text, 'working-storage section. copy tdata.')
+        s = insert_after(r'^\s+data\s+division\s*\.', text, 'working-storage section. copy ddtests.')
         s = s or text
-    s = re.sub(r'^\s+end\s+tests\s*\.', '       copy tproc.', s, flags=flags)
+    s = re.sub(r'^\s+end\s+tests\s*\.', '       copy pdtests.', s, flags=flags)
     s = re.sub(r'^\s+testsuite\s*([^.]+)\.', TEST_GROUP, s, flags=flags)
     s = re.sub(r'^\s+testcase\s*([^.]+)\.', TEST_CASE, s, flags=flags)
     s = re.sub(rf'^\s+expect\s+({ident})\s+to\s+be\s+({ident})', EXPECT, s, flags=flags)

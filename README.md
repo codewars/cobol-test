@@ -15,10 +15,16 @@ python3 src/preprocessor.py example_hello/tests.cbl
 This command creates `example_hello/tests-out.cbl`.
 
 ```
-cobc -x -std=ibm -O2 -fstatic-call -I src -I example_hello -o out example_hello/tests-out.cbl example_hello/solution.cbl
+cobc -x -std=ibm -O2 -fstatic-call -ffold-copy=lower -I src -I example_hello -o out example_hello/tests-out.cbl example_hello/solution.cbl
 ```
 
-This command compiles the source code and creates the executable `out`. The `-I` option specifies the path to copybooks. `-fstatic-call` makes all function calls static.
+This command compiles the source code and creates the executable `out`. The following options are used:
+- `-x`: build an executable program
+- `-std=ibm`: use warnings/features for the IBM COBOL (alternatively, `-std=ibm-strict` may be used but it lacks many useful intrinsic functions such as `trim`, `abs`).
+- `-fstatic-call`: all literal function calls are static.
+- `-ffold-copy=lower`: all copybook file names are converted to lower-case. So it is possible to write `copy preloaded` or `COPY PRELOADED`.
+- `-I`: the path to copybooks. 
+- `-o`: the name of the output executable file.
 
 ```
 ./out
