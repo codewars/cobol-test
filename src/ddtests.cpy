@@ -1,4 +1,5 @@
        01  line-feed-char      pic x value x'0a'.
+       01  line-feed           pic x(6) value '<:LF:>'.
        
        01  assertion-message   pic x(200).
 

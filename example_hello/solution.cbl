@@ -8,7 +8,7 @@
        01  arg     pic a(20).
        01  result  pic x(50).
 
-      * arg and result should be null terminated strings
+      * arg and result should be zero-delimited strings
        procedure division using arg result.
            string hello delimited by size
                   arg delimited by low-value '!'

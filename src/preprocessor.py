@@ -40,7 +40,7 @@ EXPECT = format(r'''if \1 = \2
 else
   display line-feed-char '<FAILED::>'
     'expected: ' \2
-    '<:LF:>' 
+    line-feed 
     'actual: ' \1
 end-if''')
 

@@ -37,7 +37,7 @@ The script `run` executes all these commands automatically:
 
 ### Test code
 
-The following statements can be used in test code.
+All statements listed below (except those which start with `perform`) must begin on a separate line.
 
 #### `testsuite (identifier | literal)+.`
 Starts a group of tests. Examples:
@@ -87,4 +87,14 @@ end-if
 Initializes the random seed. The seed value is provided in the variable `random-seed`. If the value of `random-seed` is zero (the default value) then the random seed is initialized with the current time value. Example:
 ```
 perform set-random-seed
+```
+
+#### `line-feed`
+This constant can be used to display the line feed in test group or test case titles. Example:
+```cobol
+testcase 'Fixed test' line-feed '(case 1)'.
+```
+It also works with log messages:
+```cobol
+display 'n = ' n line-feed 'm = ' m
 ```
