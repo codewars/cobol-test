@@ -54,7 +54,7 @@
            perform set-random-seed
            perform 5 times
                perform random-string
-               testcase 'Testing ' '"' chars of arg(1:len of arg) '"'.
+               testcase 'Testing ' '"', chars of arg(1:len of arg), '"'.
                initialize result
                initialize expected
                string 'Hello, ' 
@@ -92,9 +92,9 @@
            if len of result = 0 and len of expected = 0 then
                perform assert-true
            else
-               compute n = function min(len of result,
-                                function length(chars of result))
-               expect chars of result(1:n) to be 
+               expect chars of result(1:function min(len of result,
+                                      function length(chars of result))) 
+                      to be 
                       chars of expected(1:len of expected).
            end-if
            .

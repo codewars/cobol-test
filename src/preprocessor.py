@@ -52,14 +52,15 @@ def preprocess(text):
     pat_number = r'[+-]?\d+(?:\.\d*(?:[eE][+-]?\d+)?)?'
     pat_other = r'[-a-zA-Z0-9_:()]+'
     pat_value = f'(?:{pat_string1}|{pat_string2}|{pat_number}|{pat_other})'
+    pat_sep = r'[\s;,]'
     s = insert_after(r'^\s*working-storage\s+section\s*\.', text, 'copy ddtests.')
     if not s:
         s = insert_after(r'^\s*data\s+division\s*\.', text, 'working-storage section. copy ddtests.')
         s = s or text
     s = re.sub(r'^\s*end\s+tests\s*\.', '       copy pdtests.', s, flags=flags)
-    s = re.sub(rf'^\s*testsuite\s+((?:{pat_value}\s*)+)\.', TEST_GROUP, s, flags=flags)
-    s = re.sub(rf'^\s*testcase\s+((?:{pat_value}\s*)+)\.', TEST_CASE, s, flags=flags)
-    s = re.sub(rf'^\s*expect\s+((?:{pat_value}\s*)+?)to\s+be\s+((?:{pat_value}\s*)+)\.', EXPECT, s, flags=flags)
+    s = re.sub(rf'^\s*testsuite\s+((?:{pat_value}{pat_sep}*)+)\.', TEST_GROUP, s, flags=flags)
+    s = re.sub(rf'^\s*testcase\s+((?:{pat_value}{pat_sep}*)+)\.', TEST_CASE, s, flags=flags)
+    s = re.sub(rf'^\s*expect\s+((?:{pat_value}{pat_sep}*)+?)to\s+be\s+((?:{pat_value}{pat_sep}*)+)\.', EXPECT, s, flags=flags)
 
     return s
 
